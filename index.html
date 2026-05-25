@@ -1,246 +1,46 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AYV PRODUCCIONES | Productora Audiovisual</title>
-    <style>
-        /* Estilos Generales - Estilo Cinematográfico */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+<!-- Campo de Subida de Archivos -->
+<div class="file-upload-wrapper">
+    <label for="file-upload" class="file-label">
+        <span class="icon">📁</span>
+        <span class="text">Adjuntar guion o referencias (PDF, JPG, PNG)</span>
+        <input type="file" id="file-upload" name="adjunto" hidden onchange="updateFileName(this)">
+    </label>
+    <div id="file-name-display" style="font-size: 12px; color: #25D366; margin-top: 5px;"></div>
+</div>
+
+<style>
+    .file-upload-wrapper {
+        margin-top: 10px;
+    }
+    .file-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 20px;
+        border: 2px dashed #333;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: #0f0f0f;
+    }
+    .file-label:hover {
+        border-color: #888;
+        background: #1a1a1a;
+    }
+    .file-label .icon { font-size: 20px; }
+    .file-label .text { font-size: 14px; color: #888; }
+</style>
+
+<script>
+    // Función para mostrar el nombre del archivo seleccionado
+    function updateFileName(input) {
+        const display = document.getElementById('file-name-display');
+        if (input.files.length > 0) {
+            display.innerText = "Archivo listo: " + input.files[0].name;
         }
+    }
+</script>
+.
 
-        body {
-            background-color: #0b0b0b;
-            color: #ffffff;
-            scroll-behavior: smooth;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* Navegación */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(11, 11, 11, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            background: linear-gradient(45deg, #fff, #888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 30px;
-        }
-
-        nav ul li a {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #aaa;
-        }
-
-        /* Sección Hero (Inicio) */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle, rgba(30,30,30,1) 0%, rgba(11,11,11,1) 100%);
-            padding: 20px;
-        }
-
-        .hero h1 {
-            font-size: 64px;
-            font-weight: 800;
-            letter-spacing: 4px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: #888;
-            max-width: 600px;
-            margin-bottom: 40px;
-            letter-spacing: 1px;
-        }
-
-        .btn {
-            padding: 15px 35px;
-            background-color: #ffffff;
-            color: #0b0b0b;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 4px;
-            transition: transform 0.3s, background-color 0.3s;
-        }
-
-        .btn:hover {
-            transform: scale(1.05);
-            background-color: #cccccc;
-        }
-
-        /* Secciones Comunes */
-        section {
-            padding: 100px 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        section h2 {
-            font-size: 36px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 50px;
-            text-align: center;
-            border-bottom: 2px solid #222;
-            padding-bottom: 15px;
-        }
-
-        /* Grid de Servicios y Portafolio */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background-color: #161616;
-            padding: 40px;
-            border-radius: 8px;
-            border: 1px solid #222;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-
-        .card:hover {
-            border-color: #555;
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        .card p {
-            color: #888;
-            line-height: 1.6;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #050505;
-            padding: 40px 50px;
-            text-align: center;
-            border-top: 1px solid #111;
-            color: #555;
-            font-size: 14px;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Encabezado / Navegación -->
-    <header>
-        <div class="logo">AYV Producciones</div>
-        <nav>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#portafolio">Portafolio</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Sección de Inicio -->
-    <section id="inicio" class="hero">
-        <h1>AYV PRODUCCIONES</h1>
-        <p>Creamos experiencias visuales de alto impacto. Cine, publicidad y contenido digital con identidad propia.</p>
-        <a href="#portafolio" class="btn">Ver Trabajos</a>
-    </section>
-
-    <!-- Sección de Servicios -->
-    <section id="servicios">
-        <h2>Nuestros Servicios</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Producción Audiovisual</h3>
-                <p>Rodaje cinematográfico, videoclips, spots publicitarios y cobertura de eventos con equipos de última generación.</p>
-            </div>
-            <div class="card">
-                <h3>Postproducción y Edición</h3>
-                <p>Montaje profesional, corrección de color (color grading), efectos visuales y diseño de sonido adaptado a cada proyecto.</p>
-            </div>
-            <div class="card">
-                <h3>Branding & Diseño</h3>
-                <p>Desarrollo de identidad visual, logotipos animados, contenido para redes sociales y dirección de arte.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección de Portafolio (Marcador de posición) -->
-    <section id="portafolio">
-        <h2>Portafolio</h2>
-        <div class="grid">
-            <div class="card" style="height: 200px; display: flex; align-items: center; justify-content: center; background: #222;">
-                <p>[ Video / Proyecto 1 ]</p>
-            </div>
-            <div class="card" style="height: 200px; display: flex; align-items: center; justify-content: center; background: #222;">
-                <p>[ Video / Proyecto 2 ]</p>
-            </div>
-            <div class="card" style="height: 200px; display: flex; align-items: center; justify-content: center; background: #222;">
-                <p>[ Video / Proyecto 3 ]</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección de Contacto -->
-    <section id="contacto" style="text-align: center;">
-        <h2>¿Tienes un proyecto en mente?</h2>
-        <p style="color: #888; margin-bottom: 40px; font-size: 18px;">Hagámoslo realidad. Ponte en contacto con nosotros hoy mismo.</p>
-        <a href="https://wa.me/TU_NUMERO_AQUI" target="_blank" class="btn" style="background-color: #25D366; color: white;">Escríbenos por WhatsApp</a>
-    </section>
-
-    <!-- Pie de Página -->
-    <footer>
-        <p>&copy; 2026 AYV PRODUCCIONES. Todos los derechos reservados.</p>
-    </footer>
-
-</body>
-</html>
+¿Te gustaría que te ayude a configurar el script para que los archivos se guarden en una carpeta específica de tu servidor?
