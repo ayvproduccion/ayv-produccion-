@@ -1,46 +1,112 @@
-<!-- Campo de Subida de Archivos -->
-<div class="file-upload-wrapper">
-    <label for="file-upload" class="file-label">
-        <span class="icon">📁</span>
-        <span class="text">Adjuntar guion o referencias (PDF, JPG, PNG)</span>
-        <input type="file" id="file-upload" name="adjunto" hidden onchange="updateFileName(this)">
-    </label>
-    <div id="file-name-display" style="font-size: 12px; color: #25D366; margin-top: 5px;"></div>
-</div>
-
-<style>
-    .file-upload-wrapper {
-        margin-top: 10px;
-    }
-    .file-label {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 20px;
-        border: 2px dashed #333;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        background: #0f0f0f;
-    }
-    .file-label:hover {
-        border-color: #888;
-        background: #1a1a1a;
-    }
-    .file-label .icon { font-size: 20px; }
-    .file-label .text { font-size: 14px; color: #888; }
-</style>
-
-<script>
-    // Función para mostrar el nombre del archivo seleccionado
-    function updateFileName(input) {
-        const display = document.getElementById('file-name-display');
-        if (input.files.length > 0) {
-            display.innerText = "Archivo listo: " + input.files[0].name;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AYV PRODUCCIONES | Productora Audiovisual</title>
+    <style>
+        /* Estilos Generales - Estilo Cinematográfico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-    }
-</script>
-.
 
-¿Te gustaría que te ayude a configurar el script para que los archivos se guarden en una carpeta específica de tu servidor?
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #0b0b0b;
+            color: #ffffff;
+            overflow-x: hidden;
+            padding-bottom: 80px; /* Espacio para que el reproductor no tape el footer */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navegación */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(11, 11, 11, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #aaa;
+        }
+
+        /* Menú Mobile */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            background-color: #fff;
+            height: 2px;
+            transition: 0.3s;
+        }
+
+        /* Sección Hero (Inicio) */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle, rgba(30,30,30,1) 0%, rgba(11,11,11,1) 100%);
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 8vw, 64px);
+            font-weight: 800;
+            letter-spacing: 4px;
+            margin-
