@@ -1,568 +1,168 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AYV PRODUCCIONES | Productora Audiovisual</title>
-    <style>
-        /* Estilos Generales - Estilo Cinematográfico */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Primavera - Versículo Bíblico</title>
 
-        html {
-            scroll-behavior: smooth;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            background-color: #0b0b0b;
-            color: #ffffff;
-            overflow-x: hidden;
-            padding-bottom: 80px; /* Espacio para que el reproductor no tape el footer */
-        }
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Georgia, serif;
+    background: linear-gradient(
+        135deg,
+        #fffde7,
+        #fff9c4,
+        #f1f8e9,
+        #ffffff
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+/* Fondo luminoso */
+.fondo {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,235,59,.35), transparent 25%),
+        radial-gradient(circle at 80% 70%, rgba(255,193,7,.25), transparent 30%);
+}
 
-        /* Navegación */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(11, 11, 11, 0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
+/* Texto principal */
+.contenido {
+    position: relative;
+    z-index: 5;
+    width: 80%;
+    max-width: 850px;
+    text-align: center;
+    padding: 50px 35px;
+    border-radius: 30px;
+    background: rgba(255,255,255,.72);
+    box-shadow: 0 15px 50px rgba(100,80,20,.15);
+    backdrop-filter: blur(6px);
+}
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            background: linear-gradient(45deg, #fff, #888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+h1 {
+    font-size: clamp(38px, 7vw, 72px);
+    color: #d89b00;
+    margin-bottom: 25px;
+    text-shadow: 2px 3px 5px rgba(120,80,0,.18);
+}
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            align-items: center;
-        }
+.versiculo {
+    font-size: clamp(22px, 3.5vw, 38px);
+    line-height: 1.5;
+    color: #4e5b35;
+    font-style: italic;
+}
 
-        nav ul li {
-            margin-left: 30px;
-        }
+.referencia {
+    margin-top: 22px;
+    font-size: clamp(18px, 2.5vw, 28px);
+    font-weight: bold;
+    color: #b77b00;
+}
 
-        nav ul li a {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-        }
+/* Flores */
+.flor {
+    position: absolute;
+    font-size: 70px;
+    z-index: 2;
+    animation: flotar 5s ease-in-out infinite;
+    filter: drop-shadow(0 5px 5px rgba(100,70,0,.15));
+}
 
-        nav ul li a:hover {
-            color: #aaa;
-        }
+.f1 { top: 5%; left: 7%; animation-delay: 0s; }
+.f2 { top: 12%; right: 8%; animation-delay: 1s; }
+.f3 { bottom: 8%; left: 10%; animation-delay: 2s; }
+.f4 { bottom: 5%; right: 9%; animation-delay: 3s; }
+.f5 { top: 45%; left: 2%; font-size: 50px; animation-delay: 1.5s; }
+.f6 { top: 48%; right: 2%; font-size: 50px; animation-delay: 2.5s; }
 
-        /* Menú Mobile */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
+@keyframes flotar {
+    0%, 100% {
+        transform: translateY(0) rotate(-4deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(5deg);
+    }
+}
 
-        .menu-toggle span {
-            width: 25px;
-            background-color: #fff;
-            height: 2px;
-            transition: 0.3s;
-        }
+/* Pétalos */
+.petalo {
+    position: absolute;
+    top: -30px;
+    color: #ffd21c;
+    font-size: 25px;
+    animation: caer linear infinite;
+}
 
-        /* Sección Hero (Inicio) */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle, rgba(30,30,30,1) 0%, rgba(11,11,11,1) 100%);
-            padding: 20px;
-        }
+.p1 { left: 15%; animation-duration: 8s; }
+.p2 { left: 35%; animation-duration: 11s; animation-delay: 2s; }
+.p3 { left: 55%; animation-duration: 9s; animation-delay: 4s; }
+.p4 { left: 75%; animation-duration: 12s; animation-delay: 1s; }
+.p5 { left: 90%; animation-duration: 10s; animation-delay: 3s; }
 
-        .hero h1 {
-            font-size: clamp(32px, 8vw, 64px);
-            font-weight: 800;
-            letter-spacing: 4px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        .hero p {
-            font-size: clamp(14px, 4vw, 18px);
-            color: #888;
-            max-width: 600px;
-            margin-bottom: 40px;
-            letter-spacing: 1px;
-            line-height: 1.6;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 15px 35px;
-            background-color: #ffffff;
-            color: #0b0b0b;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 4px;
-            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            background-color: #cccccc;
-            box-shadow: 0 10px 20px rgba(255,255,255,0.1);
-        }
-
-        /* Secciones Comunes */
-        section {
-            padding: 100px 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        section h2 {
-            font-size: 32px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 50px;
-            text-align: center;
-            border-bottom: 2px solid #222;
-            padding-bottom: 15px;
-        }
-
-        /* Grid de Servicios y Portafolio */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background-color: #161616;
-            padding: 40px;
-            border-radius: 8px;
-            border: 1px solid #222;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-
-        .card:hover {
-            border-color: #555;
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        .card p {
-            color: #888;
-            line-height: 1.6;
-        }
-
-        /* Portafolio Estilizado */
-        .portfolio-item {
-            position: relative;
-            height: 250px;
-            background-color: #222;
-            background-size: cover;
-            background-position: center;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
-        }
-
-        .play-btn {
-            width: 50px;
-            height: 50px;
-            border: 2px solid #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            font-size: 18px;
-            transition: transform 0.3s;
-        }
-
-        .portfolio-item:hover .play-btn {
-            transform: scale(1.1);
-        }
-
-        /* Contacto y Formulario */
-        .contacto-container {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 35px;
-            text-align: left;
-        }
-
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            background: #161616;
-            border: 1px solid #222;
-            color: #fff;
-            border-radius: 4px;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .contact-form input:focus, .contact-form textarea:focus {
-            border-color: #555;
-        }
-
-        /* Área Personalizada de Subida de Archivos */
-        .file-upload-wrapper {
-            margin-top: 5px;
-        }
-
-        .file-label {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 20px;
-            border: 2px dashed #333;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: #0f0f0f;
-        }
-
-        .file-label:hover {
-            border-color: #888;
-            background: #161616;
-        }
-
-        .file-label .icon { font-size: 20px; }
-        .file-label .text { font-size: 14px; color: #888; }
-
-        #file-name-display {
-            font-size: 13px;
-            color: #25D366;
-            margin-top: 8px;
-            font-weight: 500;
-        }
-
-        .btn-wsp {
-            background-color: #25D366; 
-            color: white;
-            margin-top: 15px;
-        }
-        
-        .btn-wsp:hover {
-            background-color: #20ba5a;
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
-        }
-
-        /* Reproductor de Música Fijo Floating */
-        .audio-player {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: rgba(20, 20, 20, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 12px 18px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-            z-index: 1010;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.6);
-            transition: transform 0.3s ease;
-        }
-
-        .audio-player:hover {
-            transform: scale(1.02);
-        }
-
-        .track-info {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .track-status {
-            width: 8px;
-            height: 8px;
-            background-color: #25D366;
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 8px #25D366;
-        }
-
-        .track-name {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #ccc;
-            font-weight: 600;
-        }
-
-        audio {
-            height: 32px;
-            width: 240px;
-            outline: none;
-            /* Filtro avanzado para mimetizar el reproductor nativo con la estética oscura */
-            filter: invert(90%) hue-rotate(180deg) brightness(1.3);
-        }
-
-        /* Footer */
-        footer {
-            background-color: #050505;
-            padding: 40px 24px;
-            text-align: center;
-            border-top: 1px solid #111;
-            color: #555;
-            font-size: 14px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header {
-                padding: 20px 24px;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            nav {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(11, 11, 11, 0.95);
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease-out;
-            }
-
-            nav.active {
-                max-height: 300px;
-            }
-
-            nav ul {
-                flex-direction: column;
-                padding: 20px 0;
-            }
-
-            nav ul li {
-                margin: 15px 0;
-                text-align: center;
-            }
-
-            .audio-player {
-                left: 25px;
-                right: 25px;
-                bottom: 15px;
-            }
-            audio {
-                width: 100%;
-            }
-        }
-    </style>
+@keyframes caer {
+    0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <header>
-        <div class="logo">AYV Producciones</div>
-        <div class="menu-toggle" id="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <nav id="nav-menu">
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#portafolio">Portafolio</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+<div class="fondo"></div>
 
-    <main>
-        <section id="inicio" class="hero">
-            <h1>AYV PRODUCCIONES</h1>
-            <p>Creamos experiencias visuales de alto impacto. Cine, publicidad y contenido digital con identidad propia.</p>
-            <a href="#portafolio" class="btn">Ver Trabajos</a>
-        </section>
+<!-- Flores amarillas -->
+<div class="flor f1">🌻</div>
+<div class="flor f2">🌼</div>
+<div class="flor f3">🌻</div>
+<div class="flor f4">🌼</div>
+<div class="flor f5">🌼</div>
+<div class="flor f6">🌻</div>
 
-        <section id="servicios">
-            <h2>Nuestros Servicios</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Producción Audiovisual</h3>
-                    <p>Rodaje cinematográfico, videoclips, spots publicitarios y cobertura de eventos con equipos de última generación.</p>
-                </div>
-                <div class="card">
-                    <h3>Postproducción y Edición</h3>
-                    <p>Montaje profesional, corrección de color (color grading), efectos visuales y diseño de sonido adaptado a cada proyecto.</p>
-                </div>
-                <div class="card">
-                    <h3>Branding & Diseño</h3>
-                    <p>Desarrollo de identidad visual, logotipos animados, contenido para redes sociales y dirección de arte.</p>
-                </div>
-            </div>
-        </section>
+<!-- Pétalos cayendo -->
+<div class="petalo p1">🌼</div>
+<div class="petalo p2">🌼</div>
+<div class="petalo p3">🌼</div>
+<div class="petalo p4">🌼</div>
+<div class="petalo p5">🌼</div>
 
-        <section id="portafolio">
-            <h2>Portafolio</h2>
-            <div class="grid">
-                <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=600&q=80');">
-                    <div class="portfolio-overlay">
-                        <div class="play-btn">▶</div>
-                        <h3>Comercial de Marca</h3>
-                        <p>Publicidad Digital</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=600&q=80');">
-                    <div class="portfolio-overlay">
-                        <div class="play-btn">▶</div>
-                        <h3>Cortometraje "Raíces"</h3>
-                        <p>Cine Independiente</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" style="background-image: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80');">
-                    <div class="portfolio-overlay">
-                        <div class="play-btn">▶</div>
-                        <h3>Videoclip Musical</h3>
-                        <p>Postproducción & Color</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- Mensaje -->
+<div class="contenido">
 
-        <section id="contacto">
-            <div class="contacto-container">
-                <h2>¿Tienes un proyecto en mente?</h2>
-                <p style="color: #888; font-size: 18px;">Hagámoslo realidad. Ponte en contacto con nosotros hoy mismo.</p>
-                
-                <form class="contact-form" action="#" method="POST" enctype="multipart/form-data" onsubmit="event.preventDefault(); alert('¡Formulario simulado con éxito!');">
-                    <input type="text" placeholder="Tu Nombre" required>
-                    <input type="email" placeholder="Tu Correo Electrónico" required>
-                    <textarea rows="5" placeholder="Cuéntanos sobre tu proyecto o dinos qué archivo adjuntas..." required></textarea>
-                    
-                    <div class="file-upload-wrapper">
-                        <label for="file-upload" class="file-label">
-                            <span class="icon">📁</span>
-                            <span class="text">Adjuntar guion, referencias o brief</span>
-                            <input type="file" id="file-upload" name="archivo_proyecto" hidden onchange="updateFileName(this)">
-                        </label>
-                        <div id="file-name-display"></div>
-                    </div>
+    <h1>🌼 Feliz Primavera 🌼</h1>
 
-                    <button type="submit" class="btn">Enviar Mensaje</button>
-                </form>
-
-                <p style="margin-top: 25px; color: #555;">o escríbenos directamente:</p>
-                <a href="https://wa.me/TU_NUMERO_AQUI" target="_blank" class="btn btn-wsp">Escríbenos por WhatsApp</a>
-            </div>
-        </section>
-    </main>
-
-    <div class="audio-player">
-        <div class="track-info">
-            <span class="track-status"></span>
-            <span class="track-name">AYV - Demo Reel Soundtrack</span>
-        </div>
-        <audio controls id="main-audio">
-            <source src="tu-demo.mp3" type="audio/mpeg">
-            Tu navegador no soporta el elemento de audio.
-        </audio>
+    <div class="versiculo">
+        “Todo tiene su tiempo, y todo lo que se quiere
+        debajo del cielo tiene su hora.”
     </div>
 
-    <footer>
-        <p>&copy; 2026 AYV PRODUCCIONES. Todos los derechos reservados.</p>
-    </footer>
+    <div class="referencia">
+        Eclesiastés 3:1
+    </div>
 
-    <script>
-        // Menu Mobile Toggle
-        const menuToggle = document.getElementById('mobile-menu');
-        const navMenu = document.getElementById('nav-menu');
+</div>
 
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        document.querySelectorAll('#nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Mostrar nombre del archivo subido automáticamente
-        function updateFileName(input) {
-            const display = document.getElementById('file-name-display');
-            if (input.files.length > 0) {
-                display.innerHTML = `✓ Archivo cargado: <strong>${input.files[0].name}</strong> (${(input.files[0].size/1024/1024).toFixed(2)} MB)`;
-            } else {
-                display.innerHTML = "";
-            }
-        }
-    </script>
 </body>
 </html>
